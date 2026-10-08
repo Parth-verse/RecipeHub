@@ -1,281 +1,393 @@
 # RecipeHub
 
-> A full-stack web application for discovering, sharing, and reviewing culinary recipes, designed with a clean layered architecture, role-based access control, and a responsive food-inspired user experience.
+RecipeHub is an online recipe sharing platform that allows users to discover, share, save, rate, and review recipes.
 
----
+The platform provides different functionality for Administrators, Recipe Contributors, and Recipe Explorers.
 
 ## Features
 
-* **User Registration & Login**: Easy account registration with secure session-based authentication (`HttpSession`).
-* **BCrypt Password Hashing**: Passwords hashed securely using Spring Security's `BCryptPasswordEncoder`.
-* **Role-Based Access Control**:
-  * **Admin**: Review recipe submissions, approve or reject community contributions, and manage content.
-  * **Recipe Contributor**: Create, edit, and delete personal recipes; track approval status (`PENDING`, `APPROVED`, `REJECTED`).
-  * **Recipe Explorer**: Discover dishes, bookmark favorite recipes, submit reviews, and rate recipes 1–5 stars.
-* **Recipe Creation & Management**: Multi-field recipe submission including title, category, description, ingredients, cooking instructions, and image URL.
-* **Recipe Moderation Workflow**: Contributor recipes start in `PENDING` state and require Admin approval before appearing in public feeds.
-* **Search & Category Filtering**: Case-insensitive keyword title search and category-based filtering across categories (Curry, Rice, Italian, Chinese, Mexican, Dessert, Breakfast, Snacks, Beverages).
-* **Reviews & 1–5 Star Ratings**: Community review system with average rating calculation and duplicate review prevention per user.
-* **Saved / Bookmarked Recipes**: Personal bookmark collection with single-click save and remove functionality.
-* **Responsive Frontend**: Clean food-themed UI built with Vanilla HTML5, CSS3, and modern JavaScript (Fetch API).
-* **MySQL 8 Database**: Relational schema persistence with Hibernate / JPA automatic table synchronization.
+### User Authentication
 
----
+* User registration and login
+* BCrypt password hashing
+* Session-based authentication
+* Logout functionality
+* Current-user session management
 
-## Tech Stack
+### Recipe Contributors
+
+Contributors can:
+
+* Add new recipes
+* Edit their recipes
+* Delete their recipes
+* View their submitted recipes
+* Add ingredients and cooking instructions
+* Assign recipes to categories
+* Add recipe images using image URLs
+
+### Recipe Explorers
+
+Explorers can:
+
+* Browse recipes
+* Search recipes
+* Filter recipes by category
+* View recipe details
+* Read reviews and ratings
+* Save recipes
+* Rate recipes
+* Write reviews
+
+### Administrator
+
+Administrators can:
+
+* View pending recipe submissions
+* Approve recipes
+* Reject recipes
+* Manage recipe content
+
+### Reviews and Ratings
+
+* Users can rate recipes
+* Users can write reviews
+* Average recipe ratings are calculated
+* Reviews can be viewed from recipe details
+
+### Saved Recipes
+
+Users can:
+
+* Save recipes
+* Remove saved recipes
+* View their saved recipes
+
+## User Roles
+
+| Role        | Description                                  |
+| ----------- | -------------------------------------------- |
+| ADMIN       | Manages and approves recipe submissions      |
+| CONTRIBUTOR | Creates and manages recipes                  |
+| EXPLORER    | Discovers, saves, rates, and reviews recipes |
+
+## Technology Stack
 
 ### Frontend
-* **HTML5**: Semantic structure and accessible layouts
-* **CSS3**: Responsive flexbox and grid design with custom CSS variables
-* **JavaScript (ES6+)**: Vanilla asynchronous API communication via Fetch API
+
+* HTML5
+* CSS3
+* JavaScript
+* Responsive UI
 
 ### Backend
-* **Java 17**: Core language
-* **Spring Boot 3.3.4**: Framework for web MVC and RESTful APIs
-* **Spring Data JPA / Hibernate 6**: Object-relational mapping and repository abstraction
-* **Apache Maven**: Dependency and build lifecycle management
+
+* Java
+* Spring Boot
+* Spring Data JPA
+* Hibernate
+* Maven
+* REST APIs
 
 ### Database
-* **MySQL 8.0**: Relational database engine (`recipehub` database)
+
+* MySQL 8
 
 ### Security
-* **BCrypt**: One-way salt-hashed cryptographic password protection
-* **HTTP Session**: Cookie-backed (`JSESSIONID`) stateful session authentication
 
----
+* BCrypt password hashing
+* HTTP Session-based authentication
+* Role-based access control
 
-## Architecture
-
-The application implements standard layered architecture:
+## Application Architecture
 
 ```text
-Browser (Frontend UI)
-       │  HTTP JSON Requests (Fetch API)
-       ▼
-Spring Boot REST API (Controller Layer)
-       │  Java Method Invocations
-       ▼
-Service Layer (Business Logic & Validation)
-       │  Entity Operations
-       ▼
-Repository Layer (Spring Data JPA / Hibernate)
-       │  SQL Queries
-       ▼
-MySQL 8 Database (Relational Tables)
+Browser
+   |
+   | HTTP Requests
+   v
+Spring Boot REST API
+   |
+   v
+Service Layer
+   |
+   v
+Repository / JPA
+   |
+   v
+MySQL Database
 ```
-
----
 
 ## Project Structure
 
 ```text
 RecipeHub/
-├── pom.xml                                   # Maven dependencies and configuration
-├── .gitignore                                # Excludes build artifacts and environment secrets
-├── README.md                                 # Project documentation
-└── src/
-    └── main/
-        ├── java/
-        │   └── com/recipehub/
-        │       ├── RecipeHubApplication.java # Spring Boot entry point
-        │       │
-        │       ├── config/
-        │       │   ├── DatabaseConfig.java   # MySQL DataSource initialization
-        │       │   ├── DataLoader.java       # Seed development users and sample recipes
-        │       │   └── SecurityConfig.java   # Password encoder and security filters
-        │       │
-        │       ├── controller/
-        │       │   ├── AuthController.java   # Authentication endpoints
-        │       │   ├── RecipeController.java # Recipe catalog and CRUD endpoints
-        │       │   ├── AdminController.java  # Admin approval & rejection endpoints
-        │       │   ├── ReviewController.java # Ratings and reviews endpoints
-        │       │   └── SavedRecipeController.java # Bookmark management endpoints
-        │       │
-        │       ├── service/
-        │       │   ├── UserService.java      # User registration and verification logic
-        │       │   ├── RecipeService.java    # Recipe CRUD and status logic
-        │       │   ├── ReviewService.java    # Rating calculation and review logic
-        │       │   └── SavedRecipeService.java # Bookmark business logic
-        │       │
-        │       ├── repository/
-        │       │   ├── UserRepository.java   # User data access
-        │       │   ├── RecipeRepository.java # Recipe data access
-        │       │   ├── ReviewRepository.java # Review data access
-        │       │   └── SavedRecipeRepository.java # Bookmark data access
-        │       │
-        │       └── model/
-        │           ├── User.java             # Entity for 'users' table
-        │           ├── Recipe.java           # Entity for 'recipes' table
-        │           ├── Review.java           # Entity for 'reviews' table
-        │           └── SavedRecipe.java      # Entity for 'saved_recipes' table
-        │
-        └── resources/
-            ├── application.properties        # Application configurations and JDBC URL
-            └── static/                       # Frontend web files
-                ├── index.html                # Home page with featured recipes
-                ├── recipes.html              # Searchable recipe catalog
-                ├── recipe-details.html       # Single recipe view, reviews & bookmarks
-                ├── login.html                # User login page
-                ├── register.html             # User registration page
-                ├── add-recipe.html           # Recipe submission & editing form
-                ├── my-recipes.html           # Contributor dashboard
-                ├── saved-recipes.html        # Explorer bookmark dashboard
-                ├── admin.html                # Admin recipe moderation queue
-                ├── css/
-                │   └── style.css             # Main styling stylesheet
-                └── js/
-                    ├── common.js             # Shared navigation and session helpers
-                    ├── index.js              # Home page controller
-                    ├── recipes.js            # Catalog search and filter controller
-                    ├── recipe-details.js     # Detail view, reviews, and bookmarking
-                    ├── login.js              # Login handler
-                    ├── register.js           # Registration handler
-                    ├── add-recipe.js         # Submission and edit handler
-                    ├── my-recipes.js         # Contributor recipe management
-                    ├── saved-recipes.js      # Saved recipes controller
-                    └── admin.js              # Admin moderation queue handler
+|
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── ...
+│       │       ├── config/
+│       │       ├── controller/
+│       │       ├── model/
+│       │       ├── repository/
+│       │       └── service/
+│       │
+│       └── resources/
+│           ├── static/
+│           │   ├── css/
+│           │   ├── *.html
+│           │   └── *.js
+│           │
+│           └── application.properties
+│
+├── pom.xml
+├── README.md
+└── .gitignore
 ```
-
----
 
 ## Database
 
-RecipeHub connects to MySQL on database:
+RecipeHub uses MySQL 8 as its persistent database.
 
-`recipehub`
+The main tables are:
 
-The schema is automatically managed by Hibernate (`spring.jpa.hibernate.ddl-auto=update`) and comprises four primary tables:
+* users
+* recipes
+* reviews
+* saved_recipes
 
-1. **`users`**: Stores user ID, name, email, role (`ADMIN`, `CONTRIBUTOR`, `EXPLORER`), and BCrypt password hash.
-2. **`recipes`**: Stores recipe title, description, ingredients, instructions, category, image URL, status (`PENDING`, `APPROVED`, `REJECTED`), author info, and computed average rating.
-3. **`reviews`**: Stores individual ratings (1–5 stars), optional feedback comments, user ID, author name, and associated recipe ID.
-4. **`saved_recipes`**: Stores bookmark relationships linking user IDs to recipe IDs.
+### Users
 
----
+Stores user information including:
 
-## Setup Instructions
+* User ID
+* Name
+* Email
+* Password
+* Role
+
+Passwords are stored using BCrypt hashing.
+
+### Recipes
+
+Stores:
+
+* Recipe ID
+* Title
+* Description
+* Ingredients
+* Instructions
+* Image URL
+* Category
+* Status
+* Author
+* Average rating
+
+### Reviews
+
+Stores:
+
+* Rating
+* Comment
+* User
+* Recipe
+
+### Saved Recipes
+
+Stores the relationship between users and their saved recipes.
+
+## Getting Started
 
 ### Prerequisites
-1. **Java Development Kit (JDK 17 or higher)**
-   Verify installation:
-   ```powershell
-   java -version
-   ```
-2. **Apache Maven (3.8 or higher)**
-   Verify installation:
-   ```powershell
-   mvn -version
-   ```
-3. **MySQL Server 8.0**
-   Ensure MySQL service is running on port 3306.
 
----
+Install the following:
 
-### Step 1: Clone the Repository
-```powershell
+* Java 17 or compatible Java version
+* Maven
+* MySQL 8
+* Git
+
+### Clone the Repository
+
+```bash
 git clone https://github.com/Parth-verse/RecipeHub.git
 cd RecipeHub
 ```
 
-### Step 2: Configure Environment Variables
-Set your MySQL root password in your environment (do not commit your password to version control):
+### Configure MySQL
 
-**PowerShell (Windows):**
+Make sure MySQL Server is running.
+
+The application uses:
+
+```text
+Host: localhost
+Port: 3306
+Database: recipehub
+Username: root
+```
+
+The database can be created automatically through the application's MySQL configuration.
+
+### Configure the Database Password
+
+The MySQL password is not stored in the repository.
+
+Set the password as an environment variable.
+
+For Windows PowerShell:
+
 ```powershell
 $env:MYSQL_PASSWORD="YOUR_MYSQL_PASSWORD"
 ```
 
-**Command Prompt (cmd):**
-```cmd
-set MYSQL_PASSWORD=YOUR_MYSQL_PASSWORD
-```
+Replace the placeholder with your local MySQL password.
 
-**Bash / macOS / Linux:**
+Do not commit your password to GitHub.
+
+### Run the Application
+
 ```bash
-export MYSQL_PASSWORD="YOUR_MYSQL_PASSWORD"
-```
-
-> **Note**: The JDBC URL in `application.properties` uses `createDatabaseIfNotExist=true`. If MySQL is running and credentials are valid, the `recipehub` database will be created automatically upon initial launch.
-
-### Step 3: Build the Project
-```powershell
-mvn clean compile
-```
-
-### Step 4: Run the Application
-```powershell
 mvn spring-boot:run
 ```
 
-### Step 5: Access the Web Application
-Open your browser and navigate to:
+The application runs on:
+
 ```text
 http://localhost:8085
 ```
 
----
+Open the URL in a browser after the application starts.
 
-## Development / Test Accounts
+## Development Test Accounts
 
-For demonstration and local development, the application seeds the following test accounts on first launch:
+The project includes seeded accounts for testing the different roles.
 
-| Role | Email Address | Password | Intended Actions |
-| :--- | :--- | :--- | :--- |
-| **Admin** | `admin@recipehub.com` | `admin123` | Moderate pending submissions on `/admin.html` |
-| **Contributor** | `chef@recipehub.com` | `chef123` | Submit recipes on `/add-recipe.html`, manage on `/my-recipes.html` |
-| **Explorer** | `alice@recipehub.com` | `alice123` | Browse catalog, rate recipes, bookmark favorites |
+| Role        | Email                                             | Password |
+| ----------- | ------------------------------------------------- | -------- |
+| ADMIN       | [admin@recipehub.com](mailto:admin@recipehub.com) | admin123 |
+| CONTRIBUTOR | [chef@recipehub.com](mailto:chef@recipehub.com)   | chef123  |
+| EXPLORER    | [alice@recipehub.com](mailto:alice@recipehub.com) | alice123 |
 
-*(Quick-fill buttons are available directly on the login page for convenience).*
+These accounts are intended only for development and demonstration.
 
----
+## REST API
 
-## API Endpoints
+### Authentication
 
-### Authentication (`/api/auth`)
-* `POST /api/auth/register` — Register a new account (`name`, `email`, `password`, `role`)
-* `POST /api/auth/login` — Authenticate and establish session
-* `POST /api/auth/logout` — Terminate current session
-* `GET  /api/auth/current` — Get profile of currently logged-in user
+| Method | Endpoint             | Description         |
+| ------ | -------------------- | ------------------- |
+| POST   | `/api/auth/register` | Register a new user |
+| POST   | `/api/auth/login`    | Login               |
+| POST   | `/api/auth/logout`   | Logout              |
+| GET    | `/api/auth/current`  | Get current user    |
 
-### Recipes (`/api/recipes`)
-* `GET    /api/recipes` — List approved recipes (supports optional `?search=` and `?category=`)
-* `GET    /api/recipes/{id}` — Get single recipe details
-* `GET    /api/recipes/my` — Get all recipes created by current contributor
-* `POST   /api/recipes` — Submit new recipe (initial status: `PENDING`)
-* `PUT    /api/recipes/{id}` — Update existing recipe (owner or Admin)
-* `DELETE /api/recipes/{id}` — Delete existing recipe (owner or Admin)
+### Recipes
 
-### Admin Moderation (`/api/admin`)
-* `GET /api/admin/recipes/pending` — List all recipes awaiting review
-* `PUT /api/admin/recipes/{id}/approve` — Approve recipe (status set to `APPROVED`)
-* `PUT /api/admin/recipes/{id}/reject` — Reject recipe (status set to `REJECTED`)
+| Method | Endpoint            | Description               |
+| ------ | ------------------- | ------------------------- |
+| GET    | `/api/recipes`      | Get recipes               |
+| GET    | `/api/recipes/{id}` | Get recipe details        |
+| GET    | `/api/recipes/my`   | Get contributor's recipes |
+| POST   | `/api/recipes`      | Create recipe             |
+| PUT    | `/api/recipes/{id}` | Update recipe             |
+| DELETE | `/api/recipes/{id}` | Delete recipe             |
 
-### Reviews & Ratings (`/api`)
-* `GET    /api/recipes/{id}/reviews` — Get all reviews for a recipe
-* `POST   /api/recipes/{id}/reviews` — Submit a rating (1–5) and comment
-* `DELETE /api/reviews/{id}` — Delete a review and recalculate recipe rating
+### Administration
 
-### Saved Recipes / Bookmarks (`/api`)
-* `GET    /api/saved-recipes` — Get all bookmarked recipes for current user
-* `POST   /api/recipes/{id}/save` — Bookmark a recipe
-* `DELETE /api/recipes/{id}/save` — Remove recipe from bookmarks
-* `GET    /api/recipes/{id}/is-saved` — Check bookmark status for recipe
+| Method | Endpoint                          | Description          |
+| ------ | --------------------------------- | -------------------- |
+| GET    | `/api/admin/recipes/pending`      | View pending recipes |
+| PUT    | `/api/admin/recipes/{id}/approve` | Approve recipe       |
+| PUT    | `/api/admin/recipes/{id}/reject`  | Reject recipe        |
 
----
+### Reviews
+
+| Method | Endpoint                          | Description   |
+| ------ | --------------------------------- | ------------- |
+| GET    | `/api/recipes/{recipeId}/reviews` | Get reviews   |
+| POST   | `/api/recipes/{recipeId}/reviews` | Add review    |
+| DELETE | `/api/reviews/{id}`               | Delete review |
+
+### Saved Recipes
+
+| Method | Endpoint                     | Description         |
+| ------ | ---------------------------- | ------------------- |
+| GET    | `/api/saved-recipes`         | Get saved recipes   |
+| POST   | `/api/recipes/{id}/save`     | Save recipe         |
+| DELETE | `/api/recipes/{id}/save`     | Remove saved recipe |
+| GET    | `/api/recipes/{id}/is-saved` | Check saved status  |
+
+## Security
+
+The project uses the following security measures:
+
+* BCrypt password hashing
+* Environment-based database password configuration
+* Git-ignored environment files
+* Session-based authentication
+* Role-based access control
+* MySQL as the persistent database
+* No database password committed to the repository
+
+## Application Flow
+
+```text
+User
+ |
+ +-- Register / Login
+ |
+ v
+Authentication
+ |
+ v
+Role Detection
+ |
+ +----------------+----------------+
+ |                |                |
+ v                v                v
+ADMIN         CONTRIBUTOR       EXPLORER
+ |                |                |
+ |                +-- Add Recipe   +-- Browse Recipes
+ |                +-- Edit Recipe  +-- Search
+ |                +-- Delete       +-- Save
+ |                                 +-- Rate
+ +-- Approve / Reject              +-- Review
+```
+
+## Current Status
+
+The current version includes:
+
+* Spring Boot backend
+* MySQL database integration
+* User authentication
+* Role-based access
+* Recipe CRUD operations
+* Recipe approval system
+* Search and categories
+* Reviews and ratings
+* Saved recipes
+* Responsive frontend
+* REST API
+* Environment-based database configuration
 
 ## Future Improvements
 
-* **Cloud Image Storage**: Direct photo uploads via AWS S3 or Cloudinary instead of external image URLs.
-* **Pagination & Infinite Scroll**: Page-based queries for recipe catalogs with large datasets.
-* **Email Verification**: Account activation and password reset via SMTP.
-* **Nutritional Information**: Breakdown of calories, macronutrients, and allergen warnings.
-* **Smart Recommendations**: Content-based recipe recommendations based on user bookmark history.
-* **Containerized Deployment**: Docker containerization and Kubernetes orchestration.
+Some possible improvements include:
 
----
+* Cloud deployment
+* Cloud image storage
+* Email verification
+* Password reset
+* Recipe recommendations
+* Pagination
+* Social sharing
+* Improved moderation
+* Nutrition information
+* Ingredient-based recipe recommendations
 
-## Author
+## License
 
-**Parth Sharma**  
-B.Tech CSE (AI & ML)  
-Galgotias University
+This project was developed as an academic/college project.
