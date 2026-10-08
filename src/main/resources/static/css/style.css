@@ -1,0 +1,698 @@
+/* ==========================================================================
+   RecipeHub - Modern & Beginner-Friendly Food Styling
+   Color Palette: Warm cream background, deep charcoal text, warm orange accents
+   ========================================================================== */
+
+:root {
+    --bg-cream: #FAF7F2;
+    --card-bg: #FFFFFF;
+    --primary-orange: #E65100;
+    --primary-hover: #D84315;
+    --secondary-orange: #FF7043;
+    --text-dark: #2C2825;
+    --text-muted: #726A64;
+    --border-color: #E8E2D9;
+    --star-gold: #FBC02D;
+    --status-pending: #E65100;
+    --status-approved: #2E7D32;
+    --status-rejected: #C62828;
+    --shadow-soft: 0 4px 14px rgba(44, 40, 37, 0.08);
+    --shadow-hover: 0 8px 24px rgba(44, 40, 37, 0.14);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Container */
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+.navbar {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 20px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-orange);
+    letter-spacing: -0.5px;
+}
+
+.nav-tagline {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-orange);
+    background-color: #FFF3E0;
+}
+
+.user-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFF3E0;
+    color: var(--primary-orange);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.role-pill {
+    background-color: var(--primary-orange);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 7px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.btn-logout {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #FBE9E7;
+    color: var(--status-rejected);
+    border-color: #FFCCBC;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: var(--radius-lg);
+    margin: 20px 0 40px;
+    border: 1px solid #FFE0B2;
+}
+
+.hero h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.search-bar-wrap {
+    display: flex;
+    justify-content: center;
+    max-width: 550px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-input:focus {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.15);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-orange);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+}
+
+.btn-danger {
+    background-color: var(--status-rejected);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+    background-color: #B71C1C;
+}
+
+.btn-success {
+    background-color: var(--status-approved);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-success:hover {
+    background-color: #1B5E20;
+}
+
+/* ==========================================================================
+   Category Filters
+   ========================================================================== */
+.categories-filter {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+    justify-content: center;
+}
+
+.cat-pill {
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cat-pill:hover, .cat-pill.active {
+    background-color: var(--primary-orange);
+    color: white;
+    border-color: var(--primary-orange);
+}
+
+/* ==========================================================================
+   Recipe Grid & Cards
+   ========================================================================== */
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 26px;
+    margin-bottom: 50px;
+}
+
+.recipe-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.recipe-card-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    background-color: #EEE8DF;
+}
+
+.recipe-card-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.recipe-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-category {
+    background: #FFF3E0;
+    color: var(--primary-orange);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.card-rating span.star {
+    color: var(--star-gold);
+}
+
+.recipe-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    text-decoration: none;
+}
+
+.recipe-card-title:hover {
+    color: var(--primary-orange);
+}
+
+.recipe-card-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.4;
+    margin-bottom: 14px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.recipe-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #F0EAE1;
+    padding-top: 12px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge.PENDING {
+    background-color: #FFF3E0;
+    color: var(--status-pending);
+    border: 1px solid #FFE0B2;
+}
+
+.status-badge.APPROVED {
+    background-color: #E8F5E9;
+    color: var(--status-approved);
+    border: 1px solid #C8E6C9;
+}
+
+.status-badge.REJECTED {
+    background-color: #FFEBEE;
+    color: var(--status-rejected);
+    border: 1px solid #FFCDD2;
+}
+
+/* ==========================================================================
+   Forms & Auth Cards
+   ========================================================================== */
+.form-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 35px;
+    max-width: 520px;
+    margin: 40px auto;
+    box-shadow: var(--shadow-soft);
+}
+
+.form-card h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.form-card p.subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    outline: none;
+    background: #FAFAFA;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.form-control:focus {
+    border-color: var(--primary-orange);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.12);
+}
+
+textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: none;
+}
+
+.alert-error {
+    background-color: #FFEBEE;
+    color: var(--status-rejected);
+    border: 1px solid #FFCDD2;
+}
+
+.alert-success {
+    background-color: #E8F5E9;
+    color: var(--status-approved);
+    border: 1px solid #C8E6C9;
+}
+
+/* ==========================================================================
+   Recipe Details Page
+   ========================================================================== */
+.recipe-details-header {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-soft);
+}
+
+.details-banner-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    background-color: #EEE8DF;
+}
+
+.details-header-content {
+    padding: 26px 30px;
+}
+
+.details-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.details-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.details-meta-bar {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.content-box {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 26px;
+    box-shadow: var(--shadow-soft);
+}
+
+.content-box h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-dark);
+    border-bottom: 2px solid #FFF3E0;
+    padding-bottom: 8px;
+}
+
+.content-box pre, .content-box p {
+    font-family: inherit;
+    white-space: pre-line;
+    line-height: 1.7;
+    color: #423E3A;
+    font-size: 0.95rem;
+}
+
+/* Reviews List */
+.review-item {
+    padding: 16px 0;
+    border-bottom: 1px solid #F0EAE1;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.reviewer-name {
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.review-stars {
+    color: var(--star-gold);
+}
+
+/* ==========================================================================
+   Admin & Table Layouts
+   ========================================================================== */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    margin-top: 20px;
+}
+
+.admin-table th, .admin-table td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table th {
+    background-color: #FAF4EB;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.admin-table tr:hover {
+    background-color: #FFFAF2;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+    padding: 25px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+    .details-banner-img {
+        height: 240px;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .search-bar-wrap {
+        flex-direction: column;
+    }
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+}

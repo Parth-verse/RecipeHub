@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeHub — Discover. Create. Share.</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Discover Delicious Recipes</h1>
+            <p>Explore community-crafted dishes, share your culinary creations, and bookmark your favorites on RecipeHub.</p>
+            <form id="hero-search-form" class="search-bar-wrap">
+                <input type="text" id="hero-search-input" class="search-input" placeholder="Search delicious recipes (e.g., Paneer, Biryani, Pasta)..." />
+                <button type="submit" class="btn-primary">Search</button>
+            </form>
+        </header>
+
+        <!-- Category Shortcuts -->
+        <div class="categories-filter">
+            <button class="cat-pill active" onclick="filterHomeCategory('All')">All</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Curry')">Curry</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Rice')">Rice</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Breakfast')">Breakfast</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Italian')">Italian</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Chinese')">Chinese</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Mexican')">Mexican</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Snacks')">Snacks</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Dessert')">Dessert</button>
+            <button class="cat-pill" onclick="filterHomeCategory('Beverages')">Beverages</button>
+        </div>
+
+        <!-- Featured Recipes Grid -->
+        <div class="section-title">
+            <h2 id="grid-heading">Featured Community Recipes</h2>
+            <a href="recipes.html" class="btn-secondary">View All Recipes →</a>
+        </div>
+
+        <div id="featured-recipes-grid" class="recipe-grid">
+            <!-- Dynamic Recipe Cards will load here -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RecipeHub — Discover. Create. Share. | College CS Project</p>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

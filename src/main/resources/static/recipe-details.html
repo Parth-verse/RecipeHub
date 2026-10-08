@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details — RecipeHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <div id="details-loading" style="text-align: center; padding: 50px 0;">
+            <p style="color: var(--text-muted); font-size: 1.1rem;">Loading recipe details...</p>
+        </div>
+
+        <div id="recipe-details-container" style="display: none;">
+            <!-- Header Card with Image & Meta -->
+            <div class="recipe-details-header">
+                <img id="detail-img" src="" alt="Recipe Image" class="details-banner-img" onerror="handleImageError(this)" />
+                <div class="details-header-content">
+                    <div class="details-header-row">
+                        <div>
+                            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 8px;">
+                                <span id="detail-category" class="card-category">Category</span>
+                                <span id="detail-status" class="status-badge APPROVED" style="display: none;">APPROVED</span>
+                            </div>
+                            <h1 id="detail-title" class="details-title">Recipe Title</h1>
+                            <div class="details-meta-bar">
+                                <span>By <strong id="detail-author">Chef</strong></span>
+                                <span>•</span>
+                                <span class="card-rating"><span class="star">★</span> <span id="detail-rating">0.0</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Save Bookmark Button -->
+                        <div>
+                            <button id="btn-save-recipe" class="btn-primary" onclick="toggleSaveRecipe()">
+                                🔖 Save Recipe
+                            </button>
+                        </div>
+                    </div>
+
+                    <p id="detail-description" style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-top: 15px;">
+                        Description
+                    </p>
+                </div>
+            </div>
+
+            <!-- Ingredients & Instructions Grid -->
+            <div class="details-grid">
+                <!-- Ingredients -->
+                <div class="content-box">
+                    <h3>🛒 Ingredients</h3>
+                    <div id="detail-ingredients" style="line-height: 1.8; color: #3E3833;">
+                        <!-- Ingredients content -->
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="content-box">
+                    <h3>👩‍🍳 Instructions</h3>
+                    <div id="detail-instructions" style="line-height: 1.8; color: #3E3833;">
+                        <!-- Instructions content -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews and Ratings Section -->
+            <div class="content-box" style="margin-bottom: 50px;">
+                <h3>⭐ Reviews & Community Ratings</h3>
+
+                <!-- Add Review Form (for logged in users) -->
+                <div id="add-review-section" style="background: #FAF7F2; padding: 22px; border-radius: var(--radius-md); margin-bottom: 25px; border: 1px solid var(--border-color);">
+                    <h4 style="margin-bottom: 12px; font-size: 1.1rem;">Rate this recipe</h4>
+                    <div id="review-alert" class="alert"></div>
+
+                    <form id="review-form">
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label for="review-rating">Select Rating (1 to 5 Stars):</label>
+                            <select id="review-rating" class="form-control" style="max-width: 200px;" required>
+                                <option value="5">⭐⭐⭐⭐⭐ (5 - Outstanding)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 - Great)</option>
+                                <option value="3">⭐⭐⭐ (3 - Good)</option>
+                                <option value="2">⭐⭐ (2 - Fair)</option>
+                                <option value="1">⭐ (1 - Poor)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="review-comment">Your Feedback (Optional):</label>
+                            <textarea id="review-comment" class="form-control" placeholder="What did you think of the flavor, texture, or cooking steps?" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="padding: 9px 20px;">Submit Review</button>
+                    </form>
+                </div>
+
+                <div id="login-to-review-msg" style="display: none; padding: 15px; background: #FFF3E0; border-radius: var(--radius-sm); margin-bottom: 25px; color: var(--primary-orange);">
+                    <p>💡 <a href="login.html" style="font-weight: 700; color: var(--primary-orange);">Log in</a> to write a review and give your rating!</p>
+                </div>
+
+                <!-- Reviews List -->
+                <div id="reviews-list">
+                    <!-- Dynamic review entries -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RecipeHub — Discover. Create. Share. | College CS Project</p>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/recipe-details.js"></script>
+</body>
+</html>

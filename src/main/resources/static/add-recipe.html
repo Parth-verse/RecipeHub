@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share a Recipe — RecipeHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <div class="form-card" style="max-width: 720px;">
+            <h2 id="page-heading">Share a New Recipe</h2>
+            <p class="subtitle" id="page-subtitle">Submit your delicious recipe. It will be reviewed by an administrator before going live.</p>
+
+            <div id="recipe-form-alert" class="alert"></div>
+
+            <form id="recipe-form">
+                <div class="form-group">
+                    <label for="recipe-title">Recipe Title *</label>
+                    <input type="text" id="recipe-title" class="form-control" placeholder="e.g., Creamy Garlic Butter Mushrooms" required />
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label for="recipe-category">Category *</label>
+                        <select id="recipe-category" class="form-control" required>
+                            <option value="Curry">Curry</option>
+                            <option value="Rice">Rice</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Dessert">Dessert</option>
+                            <option value="Appetizer">Appetizer</option>
+                            <option value="Beverage">Beverage</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Main Course">Main Course</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipe-image-url">Image URL</label>
+                        <input type="url" id="recipe-image-url" class="form-control" placeholder="https://example.com/photo.jpg" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-description">Short Description *</label>
+                    <textarea id="recipe-description" class="form-control" rows="2" placeholder="Brief summary of why this dish is special..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-ingredients">Ingredients (One per line or comma-separated) *</label>
+                    <textarea id="recipe-ingredients" class="form-control" rows="5" placeholder="• 250g Paneer cubes&#10;• 2 tbsp Butter&#10;• 4 Tomatoes blended..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipe-instructions">Cooking Instructions (Step-by-step) *</label>
+                    <textarea id="recipe-instructions" class="form-control" rows="6" placeholder="1. Heat butter in a pan.&#10;2. Add tomato puree and saute...&#10;3. Simmer with paneer cubes for 10 minutes." required></textarea>
+                </div>
+
+                <button type="submit" id="btn-submit-recipe" class="btn-primary" style="width: 100%; padding: 14px; margin-top: 10px;">
+                    Publish Recipe for Review
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RecipeHub — Discover. Create. Share. | College CS Project</p>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/add-recipe.js"></script>
+</body>
+</html>

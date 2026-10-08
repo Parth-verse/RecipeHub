@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Moderation — RecipeHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <header style="margin-bottom: 25px;">
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 6px;">
+                <span class="role-pill" style="font-size: 0.8rem; padding: 4px 10px;">ADMINISTRATOR</span>
+                <h1 style="font-size: 2.2rem; font-weight: 800; margin: 0;">Recipe Moderation Queue</h1>
+            </div>
+            <p style="color: var(--text-muted);">Review pending community recipes before they appear publicly on RecipeHub.</p>
+        </header>
+
+        <div id="admin-alert" class="alert"></div>
+
+        <div id="pending-table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="width: 80px;">Image</th>
+                        <th>Recipe Title</th>
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Description</th>
+                        <th style="width: 190px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pending-recipes-tbody">
+                    <!-- Dynamic pending rows -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="no-pending-msg" style="display: none; text-align: center; padding: 50px 0; background: white; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-top: 20px;">
+            <p style="font-size: 1.2rem; font-weight: 700; color: var(--status-approved); margin-bottom: 6px;">🎉 Queue is Empty!</p>
+            <p style="color: var(--text-muted);">All submitted recipes have been reviewed.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RecipeHub — Discover. Create. Share. | College CS Project</p>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — RecipeHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <div class="form-card">
+            <h2>Join RecipeHub</h2>
+            <p class="subtitle">Create an account to share your recipes and discover food creations.</p>
+
+            <div id="register-alert" class="alert"></div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="e.g., Sarah Parker" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="sarah@example.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="At least 6 characters" minlength="4" required />
+                </div>
+                <div class="form-group">
+                    <label for="role">Account Role</label>
+                    <select id="role" class="form-control" required>
+                        <option value="EXPLORER">Explorer (Browse, rate, review & save recipes)</option>
+                        <option value="CONTRIBUTOR">Contributor (Create & share delicious recipes)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Create Account</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 25px; font-size: 0.9rem; color: var(--text-muted);">
+                Already have an account? <a href="login.html" style="color: var(--primary-orange); font-weight: 600;">Log in here</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RecipeHub — Discover. Create. Share. | College CS Project</p>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

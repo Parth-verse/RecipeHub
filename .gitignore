@@ -1,0 +1,47 @@
+# =========================================================================
+# RecipeHub — Git Ignore Configuration
+# Protects build artifacts, editor caches, OS files, and environment secrets
+# =========================================================================
+
+# Maven build directory & bytecode
+target/
+*.class
+
+# Packaged binaries
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Environment files & secret configurations
+.env
+.env.*
+*.env
+
+# IDE and Editor configurations
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Log files
+*.log
+logs/
+
+# Operating system files
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Temporary / Scratch artifacts
+scratch/
+*.tmp
+*.bak

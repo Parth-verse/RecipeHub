@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Recipes — RecipeHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <header style="margin-bottom: 25px;">
+            <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 8px;">Explore Recipes</h1>
+            <p style="color: var(--text-muted);">Browse community-approved recipes, find dishes by category, or search by name.</p>
+        </header>
+
+        <!-- Search Bar -->
+        <div style="margin-bottom: 25px;">
+            <form id="recipes-search-form" class="search-bar-wrap" style="max-width: 100%;">
+                <input type="text" id="recipe-search-input" class="search-input" placeholder="Search recipe titles..." />
+                <button type="submit" class="btn-primary">Search</button>
+                <button type="button" class="btn-secondary" id="btn-clear-search">Clear</button>
+            </form>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="categories-filter" id="category-filter-bar">
+            <button class="cat-pill active" onclick="setCategoryFilter('All')">All</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Curry')">Curry</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Rice')">Rice</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Breakfast')">Breakfast</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Italian')">Italian</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Chinese')">Chinese</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Mexican')">Mexican</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Snacks')">Snacks</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Dessert')">Dessert</button>
+            <button class="cat-pill" onclick="setCategoryFilter('Beverages')">Beverages</button>
+        </div>
+
+        <!-- Recipe Catalog Grid -->
+        <div id="recipe-catalog-grid" class="recipe-grid">
+            <!-- Dynamic Recipe Cards -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RecipeHub — Discover. Create. Share. | College CS Project</p>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/recipes.js"></script>
+</body>
+</html>

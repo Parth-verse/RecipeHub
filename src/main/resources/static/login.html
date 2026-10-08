@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — RecipeHub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+        <div class="form-card">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Log in to share recipes, leave reviews, and view saved dishes.</p>
+
+            <div id="login-alert" class="alert"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="name@example.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required />
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Log In</button>
+            </form>
+
+            <!-- Quick Demo Login Helpers for Testing -->
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">Quick fill demo credentials:</p>
+                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <button type="button" class="btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;" onclick="fillDemo('admin@recipehub.com', 'admin123')">Admin</button>
+                    <button type="button" class="btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;" onclick="fillDemo('chef@recipehub.com', 'chef123')">Contributor</button>
+                    <button type="button" class="btn-secondary" style="font-size: 0.8rem; padding: 6px 12px;" onclick="fillDemo('alice@recipehub.com', 'alice123')">Explorer</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 25px; font-size: 0.9rem; color: var(--text-muted);">
+                Don't have an account? <a href="register.html" style="color: var(--primary-orange); font-weight: 600;">Register here</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 RecipeHub — Discover. Create. Share. | College CS Project</p>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
